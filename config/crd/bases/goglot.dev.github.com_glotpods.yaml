@@ -41,8 +41,7 @@ spec:
               id:
                 description: Foo is an example field of Glotpod. Edit glotpod_types.go
                   to remove/update
-                format: int64
-                type: integer
+                type: string
               input:
                 type: string
               language:
