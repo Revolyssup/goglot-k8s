@@ -1,0 +1,11 @@
+apiVersion: goglot.dev.github.com/v1alpha1
+kind: Glotpod
+metadata:
+  name: glotpod-sample
+  namespace: default
+spec:
+  # Add fields here
+  id: 2
+  code: console.log("Ashish is a good boy")
+  input: ""
+  language: js

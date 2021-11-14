@@ -1,0 +1,20 @@
+# permissions for end users to view glotpods.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: glotpod-viewer-role
+rules:
+- apiGroups:
+  - goglot.dev.github.com
+  resources:
+  - glotpods
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - goglot.dev.github.com
+  resources:
+  - glotpods/status
+  verbs:
+  - get

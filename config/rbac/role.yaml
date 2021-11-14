@@ -1,0 +1,34 @@
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - goglot.dev.github.com
+  resources:
+  - glotpods
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - goglot.dev.github.com
+  resources:
+  - glotpods/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - goglot.dev.github.com
+  resources:
+  - glotpods/status
+  verbs:
+  - get
+  - patch
+  - update

@@ -1,0 +1,16 @@
+domain: github.com
+layout:
+- go.kubebuilder.io/v3
+projectName: kb
+repo: revolyssup/goglot-k8s
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: github.com
+  group: goglot.dev
+  kind: Glotpod
+  path: revolyssup/goglot-k8s/api/v1alpha1
+  version: v1alpha1
+version: "3"
