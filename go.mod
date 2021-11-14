@@ -1,4 +1,4 @@
-module revolyssup/goglot-k8s
+module github.com/Revolyssup/goglot-k8s
 
 go 1.16
 
