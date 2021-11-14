@@ -85,15 +85,15 @@ const (
 func (r *GlotpodReconciler) createJob(ctx context.Context, pod *goglotdevv1alpha1.Glotpod) error {
 	myJob := batchv1.Job{}
 	fmt.Println("YE MILA ", pod)
-	var script string
-	switch pod.Spec.Language {
-	case "js":
-		script = jsscript
-	}
-	fmt.Println([]string{script, pod.Spec.Input, pod.Spec.Code, "test.js"})
 	var maxPodCount int32 = 1
 	var maxTimeToCompletion int64 = 2
 	var deleteAfterSeconds int32 = 2
+	image, script, filename := getImageScriptandFilename(pod.Spec.Language)
+	fmt.Println([]string{script, pod.Spec.Input, pod.Spec.Code, filename})
+	// sha := sha1.New()
+	// sha.Write([]byte())
+	hashed := string(rune(pod.Spec.ID))
+	fmt.Println("Hashed name is ", hashed)
 	myJob = batchv1.Job{
 		ObjectMeta: metav1.ObjectMeta{
 			Namespace: pod.Namespace,
@@ -108,7 +108,7 @@ func (r *GlotpodReconciler) createJob(ctx context.Context, pod *goglotdevv1alpha
 				ObjectMeta: metav1.ObjectMeta{
 					Namespace: pod.Namespace,
 					Labels: map[string]string{
-						"name": pod.Name,
+						"name": string(hashed),
 					},
 				},
 				Spec: v1.PodSpec{
@@ -116,8 +116,8 @@ func (r *GlotpodReconciler) createJob(ctx context.Context, pod *goglotdevv1alpha
 					Containers: []v1.Container{
 						{
 							Name:    "testcontainer",
-							Image:   "revoly/jsrunnerv2:oggg",
-							Command: []string{script, pod.Spec.Input, pod.Spec.Code, "test.js"},
+							Image:   image,
+							Command: []string{script, pod.Spec.Input, pod.Spec.Code, filename},
 						},
 					},
 					RestartPolicy: "Never",
@@ -126,4 +126,12 @@ func (r *GlotpodReconciler) createJob(ctx context.Context, pod *goglotdevv1alpha
 		},
 	}
 	return r.Create(ctx, &myJob)
+}
+
+func getImageScriptandFilename(language string) (string, string, string) {
+	switch language {
+	case "js", "javascript":
+		return "revoly/jsrunnerv2:oggg", "./runjs.sh", "test.js"
+	}
+	return "", "", ""
 }

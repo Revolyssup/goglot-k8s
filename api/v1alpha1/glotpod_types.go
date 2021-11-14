@@ -29,7 +29,7 @@ type GlotpodSpec struct {
 	// Important: Run "make" to regenerate code after modifying this file
 
 	// Foo is an example field of Glotpod. Edit glotpod_types.go to remove/update
-	ID       int64  `json:"id,omitempty"`
+	ID       string `json:"id,omitempty"`
 	Language string `json:"language,omitempty"`
 	Code     string `json:"code,omitempty"`
 	Input    string `json:"input,omitempty"`
@@ -44,7 +44,6 @@ type GlotpodStatus struct {
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
-
 // Glotpod is the Schema for the glotpods API
 type Glotpod struct {
 	metav1.TypeMeta   `json:",inline"`
