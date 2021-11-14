@@ -45,8 +45,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	goglotdevv1alpha1 "revolyssup/goglot-k8s/api/v1alpha1"
-	"revolyssup/goglot-k8s/controllers"
+	"github.com/Revolyssup/goglot-k8s/controllers"
+
+	goglotdevv1alpha1 "github.com/Revolyssup/goglot-k8s/api/v1alpha1"
 
 	//+kubebuilder:scaffold:imports
 	batchv1 "k8s.io/api/batch/v1"
