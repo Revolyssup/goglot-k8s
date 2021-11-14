@@ -92,7 +92,7 @@ func (r *GlotpodReconciler) createJob(ctx context.Context, pod *goglotdevv1alpha
 	fmt.Println([]string{script, pod.Spec.Input, pod.Spec.Code, filename})
 	// sha := sha1.New()
 	// sha.Write([]byte())
-	hashed := string(rune(pod.Spec.ID))
+	hashed := pod.Spec.ID
 	fmt.Println("Hashed name is ", hashed)
 	myJob = batchv1.Job{
 		ObjectMeta: metav1.ObjectMeta{
