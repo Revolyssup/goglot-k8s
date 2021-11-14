@@ -30,7 +30,7 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	goglotdevv1alpha1 "revolyssup/goglot-k8s/api/v1alpha1"
+	goglotdevv1alpha1 "github.com/Revolyssup/goglot-k8s/api/v1alpha1"
 	//+kubebuilder:scaffold:imports
 )
 
